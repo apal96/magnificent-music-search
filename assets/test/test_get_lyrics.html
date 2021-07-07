@@ -12,19 +12,39 @@
         <form id="get-lyrics-form">
             <input type="text" id="song-title" placeholder="Song Title">
             <input type="text" id="artist-for-song" placeholder="Artist">
-            <button type="submit">Get Lyrics</button>          
+            <button type="submit">Test</button>          
         </form>
+        <h1>Test getSongInformation</h1>
         <div id="song-info">
 
         </div>
+        <h1>Test getArtistInformation</h1>
+        <h2>Bio</h2>
+        <div id="artist-bio">
+
+        </div>
+        <h2>Related Artists</h2>
+        <div id="related-artists">
+
+        </div>
+        <h2>Artist Image</h2>   
+        <div id="artist-images">
+
+        </div>
+        <h1>Test getSimilarArtists</h1>
+        <h2>Similar Artists</h2>
+        <div id="similar-artists">
+
+        </div> 
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../js/app.js"> </script>
     <script>
         $("#get-lyrics-form").submit(function(event) {
             event.preventDefault();
-            console.log("In");
             getSongInformation($("#song-title").val(), $("#artist-for-song").val());
+            getArtistInformation($("#artist-for-song").val());
+            getSimilarArtists($("#artist-for-song").val());
         });
     </script>
 </main>
