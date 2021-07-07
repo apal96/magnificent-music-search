@@ -5,6 +5,7 @@ var artistBioEl = $("#artist-bio");
 var relatedArtistsEl = $("#related-artists");
 var artistImagesEl = $("#artist-images");
 var similarArtistsEl = $("#similar-artists");
+var artistTracksEl = $("#artist-tracks");
 
 // Create a URL to fetch data from LastFM
 // method is the value for the LastFM method paramerer
@@ -50,8 +51,13 @@ function getSongInformation(songName, songArtist) {
     }
     ).then(function (data) {
         console.log(data);
-        var trackInfo = data.track.wiki.summary;
-        $("#song-info").html(trackInfo);
+        // Check that the API provides a summary
+        if (data.track.wiki && data.track.wiki.summary) {
+            var trackInfo = data.track.wiki.summary;
+            $("[data-summary-for='" + songName + "']").html(trackInfo);
+        } else {
+            console.log("Last FM did not provide a summary for " + songName + " by " + songArtist);
+        }
       }
     ).catch(function (error) {
         console.log(error);
@@ -116,7 +122,8 @@ function getSimilarArtists(artist) {
     ).then(function (data) {
         console.log(data);
         similarArtistsEl.empty();
-        for (var idx = 0; idx < data.similarartists.artist.length; idx++) {
+        // Limit the display to 10 similar artists
+        for (var idx = 0; (idx < data.similarartists.artist.length) && (idx < 10); idx++) {
             var similarArtistToDisplayEl = $('<div>');
             similarArtistToDisplayEl.text(data.similarartists.artist[idx].name);
             for (var idx2 = 0; idx2 < data.similarartists.artist[idx].image.length; idx2++) {
@@ -126,6 +133,44 @@ function getSimilarArtists(artist) {
                 similarArtistToDisplayEl.append(artistImageEl);
             }
             similarArtistsEl.append(similarArtistToDisplayEl);
+        }
+      }
+    ).catch(function (error) {
+        console.log(error);
+    });
+}
+
+// Get tracks for the artist
+function getTracksForArtist(artist) {
+    if (!artist) {
+        // artist must be provided
+        return;
+    }
+    
+    fetch(createLastFMURL("artist.gettoptracks", artist, undefined)).then(function(response) {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error(response.statusText);
+        }
+    }
+    ).then(function (data) {
+        console.log(data);
+        // Clear any previously displayed information
+        artistTracksEl.empty();
+        // Show the top tracks
+        // Limit the display to 10 top tracks
+        for (var idx = 0; (idx < data.toptracks.track.length) && (idx < 10); idx++) {
+            var trackEl = $('<div>');
+            var trackElName = $('<div>')
+            // Set the id to the song name so it can be found when 
+            var trackSummaryEl = $('<div>')
+            trackSummaryEl.attr("data-summary-for", data.toptracks.track[idx].name);
+            trackElName.text(data.toptracks.track[idx].name);
+            trackEl.append(trackElName);
+            trackEl.append(trackSummaryEl);
+            artistTracksEl.append(trackEl);
+            getSongInformation(data.toptracks.track[idx].name, artist);
         }
       }
     ).catch(function (error) {
