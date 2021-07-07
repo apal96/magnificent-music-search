@@ -4,6 +4,7 @@ body {
 
 header.jumbotron {
     width: 100%;
+    
     display: flex;
     flex-direction: row;
 
@@ -15,21 +16,48 @@ margin-bottom: 20px;
 h1.mms {
     text-align: center;
     width: 100%;
+   
 }
 
 main {
-    /* flex-direction: row; */
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: relative;
+    min-height: 500px;
+    
+   
+}
+section.main-search {
+    margin-top: 10%;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid white;
+    background-color: rgba(155, 90, 180, 0.70);
+    height: fit-content;
+    /* align-self: center; */
+}
+
+.same-line {
+    
     display: flex;
 }
 
 section.search-history-container {
+    top: 0;
+    left: 0;
+    height: 99.5%;
+    position: absolute;
     display: flex;
     flex-direction: column;
     background-color: rgba(155, 90, 180, 0.70);
     padding-top: 30px;
     border-right: 2px solid white;
-    padding: 5px;
+    padding: 5px 5px 0px 0px;
     margin-right: 10px;
+    min-width: 200px;
+    width: fit-content;
 }
 
 article.search-history {
@@ -37,6 +65,11 @@ article.search-history {
     margin-top: 25px;
     display: flex;
     flex-direction: column;
+
+}
+
+section.info-container {
+    margin-left: 230px;
 }
 
 article.bio-card {
@@ -47,6 +80,12 @@ article.bio-card {
     margin-bottom: 20px;
 }
 
+.bio-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
 img {
     max-width: 75px;
 }
@@ -54,14 +93,11 @@ img {
 section.social-media {
     display: flex;
     flex-direction: column;
-}
-
-.info-content {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    padding-top: 12px;
     
 }
+
+
 
 
 div.a-s-container {
@@ -75,8 +111,10 @@ article.albums-container {
     background-color: rgba(155, 90, 180, 0.70);
     display: flex;
 flex-direction: column;
-padding: 20px;
+padding: 0px;
 justify-content: space-around;
+font-size: 1.2vw;
+
 
 }
 
@@ -107,6 +145,10 @@ h2.song-name {
     text-align: center;
 }
 
-/* .hide {
-    visibility: hidden;
-} */
+p.lyrics {
+    padding: 0px 20px;
+}
+
+.hide {
+display:none;
+}
