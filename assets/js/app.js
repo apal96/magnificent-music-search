@@ -34,15 +34,8 @@ function getSongInformation(songName, songArtist) {
         // Song name and artist must be filled into to perform the query
         return;
     }
-    var queryURL = lastFMURL + "track.getInfo";
-    queryURL += "&api_key=" + lastFMToken;
-    queryURL += "&artist=" + songArtist;
-    queryURL += "&track=" + songName;
-    queryURL += "&format=json";
 
-    console.log("Doing a fetch for: " + queryURL);
-    
-    fetch(queryURL).then(function(response) {
+    fetch(createLastFMURL("track.getInfo", songArtist, songName)).then(function(response) {
         if (response.ok) {
             return response.json();
         } else {
@@ -54,7 +47,10 @@ function getSongInformation(songName, songArtist) {
         // Check that the API provides a summary
         if (data.track.wiki && data.track.wiki.summary) {
             var trackInfo = data.track.wiki.summary;
-            $("[data-summary-for='" + songName + "']").html(trackInfo);
+            // Escape ' and ] in the songName so they are not interpreted as part of the CSS selector
+            var escapedSongName = songName.replace(/'/g, "\\'");
+            escapedSongName = escapedSongName.replace(/]/g, "\\]");
+            $("[data-summary-for='" + escapedSongName + "']").html(trackInfo);
         } else {
             console.log("Last FM did not provide a summary for " + songName + " by " + songArtist);
         }
@@ -163,14 +159,64 @@ function getTracksForArtist(artist) {
         for (var idx = 0; (idx < data.toptracks.track.length) && (idx < 10); idx++) {
             var trackEl = $('<div>');
             var trackElName = $('<div>')
-            // Set the id to the song name so it can be found when 
+            // Div to fill in summary info for the song when it is received from the API 
             var trackSummaryEl = $('<div>')
             trackSummaryEl.attr("data-summary-for", data.toptracks.track[idx].name);
+            // Div to fill in similar songs when it is received from the API
+            var similarSongsEl = $('<ul>')
+            similarSongsEl.attr("data-similar-songs-to", data.toptracks.track[idx].name);
             trackElName.text(data.toptracks.track[idx].name);
             trackEl.append(trackElName);
             trackEl.append(trackSummaryEl);
+            trackEl.append(similarSongsEl);
             artistTracksEl.append(trackEl);
+            // Show information about the song
             getSongInformation(data.toptracks.track[idx].name, artist);
+            // Show similar songs
+            getSimilarSongs(data.toptracks.track[idx].name, artist);
+        }
+      }
+    ).catch(function (error) {
+        console.log(error);
+    });
+}
+
+// Get similar songs for a song
+function getSimilarSongs(songName, songArtist) {
+    if (!songName || !songArtist) {
+        // Song name and artist must be filled in to perform the query
+        return;
+    }
+    
+    fetch(createLastFMURL("track.getSimilar", songArtist, songName)).then(function(response) {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error(response.statusText);
+        }
+    }
+    ).then(function (data) {
+        console.log(data);
+        // Check if similar tracks were provided
+        if (data.similartracks) {
+            // Only show 10 similar tracks
+            for (var idx = 0; idx < data.similartracks.track.length && (idx < 10); idx++) {
+                // Escape ' and ] in the songName so they are not interpreted as part of the CSS selector
+                var escapedSongName = songName.replace(/'/g, "\\'");
+                escapedSongName = escapedSongName.replace(/]/g, "\\]");
+                var parentElem = $("[data-similar-songs-to='" + escapedSongName + "']");
+                parentElem = parentElem.append("<li>");
+                var similarSongNameEl = $('<span>');
+                similarSongNameEl.text(data.similartracks.track[idx].name);
+                var similarSongArtistEl = $('<span>');
+                similarSongArtistEl.text(data.similartracks.track[idx].artist.name);
+                parentElem.append(similarSongNameEl);
+                parentElem.append($('<span>,&nbsp</span>'));
+                parentElem.append(similarSongArtistEl);
+            }
+            if (data.similartracks.track.length === 0) {
+                console.log("No similar tracks found for: " + songName);
+            }
         }
       }
     ).catch(function (error) {
