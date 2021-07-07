@@ -10,7 +10,6 @@
 <main>
     <div id="lyrics-test">
         <form id="get-lyrics-form">
-            <input type="text" id="song-title" placeholder="Song Title">
             <input type="text" id="artist-for-song" placeholder="Artist">
             <button type="submit">Test</button>          
         </form>
@@ -31,6 +30,11 @@
         <div id="artist-images">
 
         </div>
+        <h1>Test getTracks</h1>
+        <h2>Tracks for Artist</h2>
+        <div id="artist-tracks">
+
+        </div> 
         <h1>Test getSimilarArtists</h1>
         <h2>Similar Artists</h2>
         <div id="similar-artists">
@@ -42,9 +46,9 @@
     <script>
         $("#get-lyrics-form").submit(function(event) {
             event.preventDefault();
-            getSongInformation($("#song-title").val(), $("#artist-for-song").val());
             getArtistInformation($("#artist-for-song").val());
             getSimilarArtists($("#artist-for-song").val());
+            getTracksForArtist($("#artist-for-song").val());
         });
     </script>
 </main>
