@@ -4,6 +4,7 @@ var lastFMURL = "https://ws.audioscrobbler.com/2.0/?method=";
 var artistBioEl = $("#artist-bio");
 var relatedArtistsEl = $("#related-artists");
 var artistImagesEl = $("#artist-images");
+var similarArtistsEl = $("#similar-artists");
 
 // Create a URL to fetch data from LastFM
 // method is the value for the LastFM method paramerer
@@ -91,6 +92,40 @@ function getArtistInformation(artist) {
             artistImageEl.attr("src", data.artist.image[idx]["#text"]);
             artistImageEl.attr("alt", "picture of " + artist);
             artistImagesEl.append(artistImageEl);
+        }
+      }
+    ).catch(function (error) {
+        console.log(error);
+    });
+}
+
+// Get information about similar artists
+function getSimilarArtists(artist) {
+    if (!artist) {
+        // artist must be provided
+        return;
+    }
+    
+    fetch(createLastFMURL("artist.getSimilar", artist, undefined)).then(function(response) {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error(response.statusText);
+        }
+    }
+    ).then(function (data) {
+        console.log(data);
+        similarArtistsEl.empty();
+        for (var idx = 0; idx < data.similarartists.artist.length; idx++) {
+            var similarArtistToDisplayEl = $('<div>');
+            similarArtistToDisplayEl.text(data.similarartists.artist[idx].name);
+            for (var idx2 = 0; idx2 < data.similarartists.artist[idx].image.length; idx2++) {
+                var artistImageEl = $("<img>");
+                artistImageEl.attr("src", data.similarartists.artist[idx].image[idx2]["#text"]);
+                artistImageEl.attr("alt", "picture of " + data.similarartists.artist[idx].name);
+                similarArtistToDisplayEl.append(artistImageEl);
+            }
+            similarArtistsEl.append(similarArtistToDisplayEl);
         }
       }
     ).catch(function (error) {

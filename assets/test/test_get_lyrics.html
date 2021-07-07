@@ -30,6 +30,11 @@
         <h2>Artist Image</h2>   
         <div id="artist-images">
 
+        </div>
+        <h1>Test getSimilarArtists</h1>
+        <h2>Similar Artists</h2>
+        <div id="similar-artists">
+
         </div> 
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -39,6 +44,7 @@
             event.preventDefault();
             getSongInformation($("#song-title").val(), $("#artist-for-song").val());
             getArtistInformation($("#artist-for-song").val());
+            getSimilarArtists($("#artist-for-song").val());
         });
     </script>
 </main>
