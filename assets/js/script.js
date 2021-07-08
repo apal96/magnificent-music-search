@@ -6,7 +6,7 @@ var artistBioEl = $(".bio");
 var relatedArtistsEl = $("#related-artists");
 var artistImageEl = $("#artist-image");
 var similarArtistsEl = $("#similar-artists");
-var artistTracksEl = $("#artist-tracks");
+var artistTracksEl = $(".tracks-list");
 var albumInfoEl = $("#album-info");
 var savedSearchesEl = $("#saved-searches");
 var searchInputFormEl = $("#search-input-form");
@@ -172,19 +172,22 @@ function getTracksForArtist(artist) {
         // Clear any previously displayed information
         artistTracksEl.empty();
         // Show the top tracks
-        // Limit the display to 10 top tracks
-        for (var idx = 0; (idx < data.toptracks.track.length) && (idx < 10); idx++) {
-            var trackEl = $('<div>');
-            var trackElName = $('<div>')
+        // Limit the display to 5 top tracks
+        for (var idx = 0; (idx < data.toptracks.track.length) && (idx < 5); idx++) {
+            var trackEl = $('<li>');
+            trackEl.addClass("ba b--silver");
+            var trackElName = $('<h4>')
             // Div to fill in summary info for the song when it is received from the API 
             var trackSummaryEl = $('<div>')
             trackSummaryEl.attr("data-summary-for", data.toptracks.track[idx].name);
             // Div to fill in similar songs when it is received from the API
             var similarSongsEl = $('<ul>')
             similarSongsEl.attr("data-similar-songs-to", data.toptracks.track[idx].name);
+            similarSongsEl.addClass("list");
             trackElName.text(data.toptracks.track[idx].name);
             trackEl.append(trackElName);
             trackEl.append(trackSummaryEl);
+            trackEl.append($("<h5>Similar Songs</h5>"));
             trackEl.append(similarSongsEl);
             artistTracksEl.append(trackEl);
             // Show information about the song
@@ -216,13 +219,15 @@ function getSimilarSongs(songName, songArtist) {
         console.log(data);
         // Check if similar tracks were provided
         if (data.similartracks) {
-            // Only show 10 similar tracks
-            for (var idx = 0; idx < data.similartracks.track.length && (idx < 10); idx++) {
+            // Only show 3 similar tracks
+            for (var idx = 0; idx < data.similartracks.track.length && (idx < 3); idx++) {
                 // Escape ' and ] in the songName so they are not interpreted as part of the CSS selector
                 var escapedSongName = songName.replace(/'/g, "\\'");
                 escapedSongName = escapedSongName.replace(/]/g, "\\]");
                 var parentElem = $("[data-similar-songs-to='" + escapedSongName + "']");
                 parentElem = parentElem.append("<li>");
+                // left align
+                parentElem.addClass("tl");
                 var similarSongNameEl = $('<span>');
                 similarSongNameEl.text(data.similartracks.track[idx].name);
                 var similarSongArtistEl = $('<span>');
@@ -265,7 +270,7 @@ function getAlbumsForArtist(artist) {
             // Album will be a section like:
             //   <section class="album-card flex">
             var albumEl = $('<section>');
-            albumEl.addClass("album-card flex");
+            albumEl.addClass("album-card flex ba b--silver");
             // Add a data attribute for the album name
             albumEl.attr("data-album-info-for", data.topalbums.album[idx].name);
             albumInfoEl.append(albumEl);
@@ -391,6 +396,8 @@ searchInputFormEl.submit(function(event) {
     getArtistInformation(searchInput);
     // Get the artists albums
     getAlbumsForArtist(searchInput);
+    // Get the tracks for the artist
+    getTracksForArtist(searchInput);
 });
 
 // Show any persisted saved searches
