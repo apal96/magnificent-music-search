@@ -105,6 +105,12 @@ function getArtistInformation(artist) {
             relatedArtistsEl.append(similarArtistEl);
         }
 
+        if (data.artist.similar.artist.length > 0) {
+            similarSearchesEl.show();
+        } else {
+            similarSearchesEl.hide();
+        }
+
         // Show the last image
         if (data.artist.image.length) {
             artistImageEl.attr("src", data.artist.image[data.artist.image.length - 1]["#text"]);
@@ -366,6 +372,12 @@ function displaySavedSearches() {
         searchEl.text(savedSearches[idx]);
         searchEl.attr("data-search-val", savedSearches[idx]);
         savedSearchesEl.append(searchEl);
+    }
+
+    if (savedSearches.length > 0) {
+        searchHistoryEl.show();
+    } else {
+        searchHistoryEl.hide();
     }
 }
 
