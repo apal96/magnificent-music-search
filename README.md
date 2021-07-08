@@ -34,7 +34,10 @@
 * The Repository can be accessed on Github at https://github.com/apal96/magnificent-music-search
 
 # eMail
-* The best way to contact the creators of this website is at tnj8510@gmail.com, ADD EMAIL, ADD EMAIL.
+* The best way to contact the creators of this website by email. 
+*To contact Troy Johnson, email tnj8510@gmail.com.
+*To contact Sam Lingampalli, email alishapal96@gmail.com.
+*To contact Alisha Pal, email sam.l.full.stack@gmail.com.
 
 # Frequently Asked Questions
 * There are no frequently asked questions.
