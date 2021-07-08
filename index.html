@@ -6,158 +6,134 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+        <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
 </head>
 
-<body>
+<body class="bg-light-blue">
+
+    
 
 
-
-    <header class="jumbotron">
-        <button class="home">home</button>
-        <h1 class="mms">Magnificent Music Search</h1>
+    <header class="jumbotron navbar tc">
+        <h1 class="6rem (80px)">Title</h1>
     </header>
 
-    <main>
+    <main class="flex tc">
 
-        <section class="search-history-container">
+        <div class="search-history-container tc pa3 outline bg-blue">
 
             <!-- <article class="new-search hide"> -->
-            <article class="new-search">
-                <input type="text" placeholder="Search...">
-                <button class="sh-search-btn"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"></path><path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"></path></svg></button>
+            <article class="search-new">
+                <input class="bg-washed-blue" type="text" placeholder="Search Artist...">
+                <button class="sh-search-btn bg-washed-blue"><svg stroke="currentColor" fill="currentColor" stroke-width="0"
+                        viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
+                            clip-rule="evenodd"></path>
+                        <path fill-rule="evenodd"
+                            d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
+                            clip-rule="evenodd"></path>
+                    </svg></button>
+            </article>
+
+            <article class="search-similar">
+                <h3>Search Similar</h3>
+                <button class="similar-1 flex w-100 bg-washed-blue">btn 1</button>
+                <button class="similar-2 flex w-100 bg-washed-blue">btn 2</button>
+                <button class="similar-3 flex w-100 bg-washed-blue">btn 3</button>
             </article>
 
             <article class="search-history">
                 <h3>Search History</h3>
-                    <button class="recent-1">btn 1</button>
-                    <button class="recent-2">btn 2</button>
-                    <button class="recent-3">btn 3</button>
+                <button class="recent-1 flex w-100 bg-washed-blue">btn 1</button>
+                <button class="recent-2 flex w-100 bg-washed-blue">btn 2</button>
+                <button class="recent-3 flex w-100 tc bg-washed-blue">btn 3</button>
             </article>
-        </section>
-
-        <!-- <section class="main-search"> -->
-        <section class="main-search hide">
-<div class="same-line">
-            <input type="text" placeholder="Search...">
-            <button class="search-btn"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"></path><path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"></path></svg></button>
         </div>
-    </section>
-
 
         <!-- <section class="info-container hide"> -->
-        <section class="info-container">
+        <div class="info-container bg-washed-blue outline">
+ <h2 class="band-name">Band Name</h2>
+            <article class="bio-card flex">
+               <img src="./assets/img/cool-band.jpg" class="w-25 h-25 pa3">
 
-            <article class="bio-card">
-                <h2 class="band-name">Band Name</h2>
-                <div class="bio-content">
-                    <section class="album">
-                        <p class="album-name">Album Name</p>
-                        <img src="./assets/img/example-album.jpg">
-                    </section>
+                <section class="band-info w-50">
+                    <p class="years-active ">1980-2000</p>
+                    <p class="genre">genre</p>
+                    <p class="sales">5 woman group</p>
+                    <p class="country">Australia</p>
+                </section>
 
-                    <section class="band-info">
-                        <p class="years-active">1980-2000</p>
-                        <p class="genre">genre</p>
-                        <p class="sales">multi platinum</p>
-                    </section>
-
-                    <section class="social-media">
-                        <a class="youtube">Youtube</a>
-                        <a class="spotify">Spotify</a>
-                        <a class="facebook">Facebook</a>
-                        <a class="instagram">Instagram</a>
-                        <a class="twitter">Twitter</a>
-                    </section>
-
-                    <section class="hit-songs">
-                        <ol>
-                            <li>hit song 1</li>
-                            <li>hit song 2</li>
-                            <li>hit song 3</li>
-                        </ol>
-                    </section>
-
-                    <section class="awards">
-                        <ul class="awards-list">
-                            <li>accomplishment 1</li>
-                            <li>accomplishment 2</li>
-                            <li>accomplishment 3</li>
-                        </ul>
-                    </section>
-
-                </div>
+                <section class="snippet w-50 pa3">
+                    <p class="bio">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium reiciendis nemo
+                        rerum, tempore quidem magnam est, unde necessitatibus sunt praesentium perferendis in laboriosam
+                        quo distinctio possimus eum corrupti cumque enim accusamus eveniet dolorem, libero corporis.
+                        Accusamus voluptates repellat nobis nam tempore aperiam quo ducimus incidunt magnam est.
+                        Blanditiis ea rem autem inventore id, quia eligendi, obcaecati numquam quos pariatur cum, veniam
+                        porro similique. Odio at inventore saepe nulla. Fugiat omnis magnam temporibus iure, vero quam
+                        rerum neque! Optio nostrum, minima, dolores ea blanditiis aspernatur doloribus harum omnis
+                        accusantium quam esse distinctio beatae, iure animi porro officiis necessitatibus quos enim?
+                        Architecto?</p>
+                </section>
             </article>
-            <div class="a-s-container">
-               
-                <article class="albums-container">
-                    <section class="album-card">
-                        <div class="album-visual">
-                            <p class="title">Album Title</p>
-                            <img src="./assets/img/example-album.jpg">
-                        </div>
-                        <ol class="song-list">
-                            <li>Listed Songs 1</li>
-                            <li>Listed Songs 2</li>
-                            <li>Listed Songs 3</li>
-                        </ol>
+
+            <div class="hits-container flex outline">
+
+                <article class="hit-albums w-50">
+                    <h3>Hit Albums</h3>
+                    <section class="album-card flex">
+                        <img src="./assets/img/album-img.jpg" class="w-25 h-25 pa3">
+                        <p class="album-summary v-top">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae
+                            perspiciatis molestiae odit hic. Suscipit libero pariatur, dolorem nam explicabo omnis           
+                        </p>
                     </section>
 
-                    <section class="album-card">
-                        <div class="album-visual">
-                            <p class="title">Album Title</p>
-                            <img src="./assets/img/example-album.jpg">
-                        </div>
-                        <ol class="song-list">
-                            <li>Listed Songs 1</li>
-                            <li>Listed Songs 2</li>
-                            <li>Listed Songs 3</li>
-                        </ol>
+                    <section class="album-card flex">
+                        <img src="./assets/img/album-img.jpg" class="w-25 h-25 pa3">
+                        <p class="album-summary v-top">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae
+                            perspiciatis molestiae odit hic. Suscipit libero pariatur, dolorem nam explicabo omnis           
+                        </p>
                     </section>
 
-                    <section class="album-card">
-                        <div class="album-visual">
-                            <p class="title">Album Title</p>
-                            <img src="./assets/img/example-album.jpg">
-                        </div>
-                        <ol class="song-list">
-                            <li>Listed Songs 1</li>
-                            <li>Listed Songs 2</li>
-                            <li>Listed Songs 3</li>
-                        </ol>
+                    <section class="album-card flex">
+                        <img src="./assets/img/album-img.jpg" class="w-25 h-25 pa3">
+                        <p class="album-summary v-top">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae
+                            perspiciatis molestiae odit hic. Suscipit libero pariatur, dolorem nam explicabo omnis           
+                        </p>
                     </section>
+
+                    <section class="album-card flex">
+                        <img src="./assets/img/album-img.jpg" class="w-25 h-25 pa3">
+                        <p class="album-summary v-top">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae
+                            perspiciatis molestiae odit hic. Suscipit libero pariatur, dolorem nam explicabo omnis           
+                        </p>
+                    </section>
+
+                    <section class="album-card flex">
+                        <img src="./assets/img/album-img.jpg" class="w-25 h-25 pa3">
+                        <p class="album-summary v-top">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae
+                            perspiciatis molestiae odit hic. Suscipit libero pariatur, dolorem nam explicabo omnis           
+                        </p>
+                    </section>
+                    
                 </article>
 
-                <article class="lyrics-container">
-                    <h2 class="song-name">Song Name Here</h2>
-                    <p class="lyrics">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis, corporis! Velit nulla
-                        accusantium qui mollitia id harum repellendus, amet illo commodi magni asperiores. Commodi culpa
-                        sit aperiam ex modi corrupti mollitia pariatur illum omnis. Impedit, similique quibusdam hic
-                        corporis eveniet recusandae beatae quos atque. Hic error molestiae veritatis illum sed est? Modi
-                        voluptates asperiores, provident velit veniam optio enim aut! Assumenda praesentium aliquid
-                        cumque iure! Itaque aliquid, quis harum enim quo eveniet, nihil architecto esse id, alias
-                        officiis earum laudantium neque? Omnis suscipit, quisquam voluptatibus velit cum, quis tempore
-                        corrupti id deserunt temporibus obcaecati quibusdam, iure odit! Tempora dolore, quam
-                        reprehenderit, facilis adipisci eligendi enim quod optio explicabo numquam consequuntur
-                        doloribus vel quasi nostrum et quisquam fugiat nihil possimus at cum sapiente nisi! Molestias
-                        provident, quos aliquid voluptatibus itaque fugit dignissimos voluptatem, illo asperiores illum
-                        quod! Fuga, assumenda numquam. Aperiam harum commodi enim at accusamus atque molestias labore,
-                        quo, dolores dignissimos, reprehenderit beatae ut laudantium dolorum incidunt obcaecati quam!
-                        Natus est quod soluta vitae blanditiis enim unde modi! Est impedit quia dolorem reprehenderit
-                        dicta odio provident maiores magnam totam repudiandae nemo, corrupti consequuntur incidunt
-                        perspiciatis inventore a qui! At adipisci incidunt repellat voluptate sequi a distinctio cum
-                        excepturi commodi autem similique omnis sit velit illo suscipit, architecto dicta? Possimus,
-                        voluptates harum tempore modi quaerat, optio facilis unde, culpa cumque ratione suscipit officia
-                        praesentium amet. Delectus aliquam veritatis ea nemo eum voluptate molestiae reiciendis quidem
-                        cumque. Aliquam modi at dicta ea fugiat impedit unde accusantium quos ut. Itaque culpa nisi
-                        aliquid sed facere deleniti earum. Aperiam odit in odio maiores cumque aut, esse quos recusandae
-                        eum. Quaerat distinctio illum vel saepe? Expedita ullam sequi magnam quod voluptates accusamus
-                        autem hic aliquam nobis totam tempore dolores, itaque atque placeat, incidunt consectetur
-                        suscipit, omnis nulla asperiores voluptatum magni quia ipsa cumque ipsum? Beatae.
-                    </p>
+                <article class="hit-trakcs w-50">
+                    <h3>Hit Songs</h3>
+                    <ol class="tracks-list"></ol>
+                    <li>Track 1</li>
+                    <li>Track 2</li>
+                    <li>Track 3</li>
+                    <li>Track 4</li>
+                    <li>Track 5</li>
+                    <li>Track 6</li>
+                    <li>Track 7</li>
+                    <li>Track 8</li>
+                    <li>Track 9</li>
+                    <li>Track 10</li>
                 </article>
-            </div>
+
         </section>
 
     </main>
