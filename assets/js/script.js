@@ -260,16 +260,14 @@ function getAlbumsForArtist(artist) {
         // Clear any previously displayed information
         albumInfoEl.empty();
         // Show the top albums
-        // Limit the display to 10 top albums
-        for (var idx = 0; (idx < data.topalbums.album.length) && (idx < 10); idx++) {
-            var albumEl = $('<div>');
-            var albumElName = $('<div>');
-            albumElName.text(data.topalbums.album[idx].name);
-            // Div to fill in info for the album when it is received from the API 
-            var albumInfoFromAPIEl = $('<div>');
-            albumInfoFromAPIEl.attr("data-album-info-for", data.topalbums.album[idx].name);
-            albumEl.append(albumElName);
-            albumEl.append(albumInfoFromAPIEl);
+        // Limit the display to 5 top albums
+        for (var idx = 0; (idx < data.topalbums.album.length) && (idx < 5); idx++) {
+            // Album will be a section like:
+            //   <section class="album-card flex">
+            var albumEl = $('<section>');
+            albumEl.addClass("album-card flex");
+            // Add a data attribute for the album name
+            albumEl.attr("data-album-info-for", data.topalbums.album[idx].name);
             albumInfoEl.append(albumEl);
             // Query the API for the album information
             getAlbumInformation(artist, data.topalbums.album[idx].name);
@@ -300,26 +298,33 @@ function getAlbumInformation(artist, album) {
         var escapedAlbumName = album.replace(/'/g, "\\'");
         escapedAlbumName = escapedAlbumName.replace(/]/g, "\\]");
         var parentElem = $("[data-album-info-for='" + escapedAlbumName + "']");
+
+        // Add any images
+        var albumImageEl = $("<img>");
+        albumImageEl.addClass("w-25 h-25 pa3");
+        if (data.album.image.length) {
+            // Show the last image
+            albumImageEl.attr("src", data.album.image[data.album.image.length - 1]["#text"]);
+            albumImageEl.attr("alt",  album);
+        } else {
+            // Use the default image
+            albumImageEl.attr("src", "./assets/img/album-img.jpg");
+            albumImageEl.attr("alt",  "default image");
+        }
+        parentElem.append(albumImageEl);
+
         // Check that the summary is available
         if (data.album && data.album.wiki) {
             // Add a summary
             var summaryText = data.album.wiki.summary;
-            var summaryEl = $('<div>');
+            var summaryEl = $('<p>');
             summaryEl.html(summaryText);
+            // float to the right
+            summaryEl.addClass("album-summary v-top");
             parentElem.append(summaryEl);
         } else {
             console.log("No summary available for " + album);
         }
-        // Add any images
-        var albumImagesEl = $('<div>');
-        if (data.album.image.length) {
-            // Show the last image
-            var albumImageEl = $("<img>");
-            albumImageEl.attr("src", data.album.image[data.album.image.length - 1]["#text"]);
-            albumImageEl.attr("alt",  album);
-            albumImagesEl.append(albumImageEl);
-        }
-        parentElem.append(albumImagesEl);
 
       }
     ).catch(function (error) {
@@ -384,6 +389,8 @@ searchInputFormEl.submit(function(event) {
 
     // Get the artist information and display it
     getArtistInformation(searchInput);
+    // Get the artists albums
+    getAlbumsForArtist(searchInput);
 });
 
 // Show any persisted saved searches
