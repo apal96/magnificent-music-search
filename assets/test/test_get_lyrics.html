@@ -13,8 +13,8 @@
             <input type="text" id="artist-for-song" placeholder="Artist">
             <button type="submit">Test</button>          
         </form>
-        <h1>Test getSongInformation</h1>
-        <div id="song-info">
+        <h1>Test getAlbums</h1>
+        <div id="album-info">
 
         </div>
         <h1>Test getArtistInformation</h1>
@@ -46,6 +46,7 @@
     <script>
         $("#get-lyrics-form").submit(function(event) {
             event.preventDefault();
+            getAlbumsForArtist($("#artist-for-song").val());
             getArtistInformation($("#artist-for-song").val());
             getSimilarArtists($("#artist-for-song").val());
             getTracksForArtist($("#artist-for-song").val());
