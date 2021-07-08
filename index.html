@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Magnificient Music Search</title>
     <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
         <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
 </head>
@@ -25,16 +25,18 @@
 
             <!-- <article class="new-search hide"> -->
             <article class="search-new">
-                <input class="bg-washed-blue" type="text" placeholder="Search Artist...">
-                <button class="sh-search-btn bg-washed-blue"><svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                        viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
-                            clip-rule="evenodd"></path>
-                        <path fill-rule="evenodd"
-                            d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
-                            clip-rule="evenodd"></path>
-                    </svg></button>
+                <form id="search-input-form">
+                    <input class="bg-washed-blue" type="text" placeholder="Search Artist..." id="search-input-text">
+                    <button class="sh-search-btn bg-washed-blue"><svg stroke="currentColor" fill="currentColor" stroke-width="0"
+                            viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
+                                clip-rule="evenodd"></path>
+                            <path fill-rule="evenodd"
+                                d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
+                                clip-rule="evenodd"></path>
+                        </svg></button>
+                </form>
             </article>
 
             <article class="search-similar">
@@ -46,9 +48,10 @@
 
             <article class="search-history">
                 <h3>Search History</h3>
-                <button class="recent-1 flex w-100 bg-washed-blue">btn 1</button>
-                <button class="recent-2 flex w-100 bg-washed-blue">btn 2</button>
-                <button class="recent-3 flex w-100 tc bg-washed-blue">btn 3</button>
+                <div id="saved-searches">
+                    <!-- Dynamically generated buttons for the saved searches -->
+                    <!-- <button class="recent-1 flex w-100 bg-washed-blue">btn 1</button> -->
+                </div>
             </article>
         </div>
 
@@ -137,6 +140,9 @@
         </section>
 
     </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./assets/js/script.js"></script>
 
 </body>
 
