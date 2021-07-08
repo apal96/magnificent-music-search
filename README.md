@@ -36,8 +36,8 @@
 # eMail
 * The best way to contact the creators of this website by email. 
 *To contact Troy Johnson, email tnj8510@gmail.com.
-*To contact Sam Lingampalli, email alishapal96@gmail.com.
-*To contact Alisha Pal, email sam.l.full.stack@gmail.com.
+*To contact Sam Lingampalli, email sam.l.full.stack@gmail.com.
+*To contact Alisha Pal, email alishapal96@gmail.com.
 
 # Frequently Asked Questions
 * There are no frequently asked questions.
