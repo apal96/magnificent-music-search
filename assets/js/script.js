@@ -1,9 +1,10 @@
 var lastFMToken = "2b80e0b10a244c16881596344e29cbc1";
 var lastFMURL = "https://ws.audioscrobbler.com/2.0/?method=";
 
-var artistBioEl = $("#artist-bio");
+var bandNameEl = $(".band-name");
+var artistBioEl = $(".bio");
 var relatedArtistsEl = $("#related-artists");
-var artistImagesEl = $("#artist-images");
+var artistImageEl = $("#artist-image");
 var similarArtistsEl = $("#similar-artists");
 var artistTracksEl = $("#artist-tracks");
 var albumInfoEl = $("#album-info");
@@ -89,23 +90,25 @@ function getArtistInformation(artist) {
         console.log(data);
         var artistBio = data.artist.bio.summary;
         artistBioEl.html(artistBio);
+
         // Clear any previously displayed information
         relatedArtistsEl.empty();
-        // Show the related artists
-        for (var idx = 0; idx < data.artist.similar.artist.length; idx++) {
-            var similarArtistEl = $('<div>');
+        // Show up to 3 related artists
+        for (var idx = 0; (idx < data.artist.similar.artist.length) && (idx < 3); idx++) {
+            var similarArtistEl = $('<button>');
+            similarArtistEl.addClass("flex w-100 bg-washed-blue");
             similarArtistEl.text(data.artist.similar.artist[idx].name);
             relatedArtistsEl.append(similarArtistEl);
         }
 
-        // Clear any previous images
-        artistImagesEl.empty();
         // Show the last image
         if (data.artist.image.length) {
-            var artistImageEl = $("<img>");
             artistImageEl.attr("src", data.artist.image[data.artist.image.length - 1]["#text"]);
             artistImageEl.attr("alt", "picture of " + artist);
-            artistImagesEl.append(artistImageEl);
+        } else {
+            // Show the default image
+            artistImageEl.attr("src", "./assets/img/cool-band.jpg");
+            artistImageEl.attr("alt", "default picture");
         }
       }
     ).catch(function (error) {
@@ -375,6 +378,12 @@ searchInputFormEl.submit(function(event) {
 
     // Clear the input field's value
     searchInputEl.val("");
+
+    // Show the bandName
+    bandNameEl.text(searchInput);
+
+    // Get the artist information and display it
+    getArtistInformation(searchInput);
 });
 
 // Show any persisted saved searches
