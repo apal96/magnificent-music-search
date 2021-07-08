@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
-        <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
 </head>
 
 <body class="bg-light-blue">
@@ -16,17 +15,17 @@
 
 
     <header class="jumbotron navbar tc">
-        <h1 class="6rem (80px)">Title</h1>
+        <h1 class="black" shadow-3">Magnificent Media Search</h1>
     </header>
 
-    <main class="flex tc">
+    <main class="flex tc flex-column flex-row-ns">
 
         <div class="search-history-container tc pa3 outline bg-blue">
 
             <!-- <article class="new-search hide"> -->
             <article class="search-new">
-                <input class="bg-washed-blue" type="text" placeholder="Search Artist...">
-                <button class="sh-search-btn bg-washed-blue"><svg stroke="currentColor" fill="currentColor" stroke-width="0"
+                <input class="bg-washed-blue w-100" type="text" placeholder="Search Artist...">
+                <button class="sh-search-btn bg-washed-blue w-100 link dim black mw5 dt hide-child ba b--black-20 pa1 br2 pointer"><svg stroke="currentColor" fill="currentColor" stroke-width="0"
                         viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
                             d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
@@ -38,27 +37,27 @@
             </article>
 
             <article class="search-similar">
-                <h3>Search Similar</h3>
-                <button class="similar-1 flex w-100 bg-washed-blue">btn 1</button>
-                <button class="similar-2 flex w-100 bg-washed-blue">btn 2</button>
-                <button class="similar-3 flex w-100 bg-washed-blue">btn 3</button>
+                <h3 class="white">Similar Artists</h3>
+                <button class="similar-1 flex w-100 bg-washed-blue link dim black mw5 dt hide-child ba b--black-20 pa1 br2 pointer">btn 1</button>
+                <button class="similar-2 flex w-100 bg-washed-blue link dim black mw5 dt hide-child ba b--black-20 pa1 br2 pointer">btn 2</button>
+                <button class="similar-3 flex w-100 bg-washed-blue link dim black mw5 dt hide-child ba b--black-20 pa1 br2 pointer">btn 3</button>
             </article>
 
             <article class="search-history">
-                <h3>Search History</h3>
-                <button class="recent-1 flex w-100 bg-washed-blue">btn 1</button>
-                <button class="recent-2 flex w-100 bg-washed-blue">btn 2</button>
-                <button class="recent-3 flex w-100 tc bg-washed-blue">btn 3</button>
+                <h3 class="white">Search History</h3>
+                <button class="recent-1 flex w-100 bg-washed-blue link dim black mw5 dt hide-child ba b--black-20 pa1 br2 pointer">btn 1</button>
+                <button class="recent-2 flex w-100 bg-washed-blue link dim black mw5 dt hide-child ba b--black-20 pa1 br2 pointer">btn 2</button>
+                <button class="recent-3 flex w-100 tc bg-washed-blue link dim black mw5 dt hide-child ba b--black-20 pa1 br2 pointer">btn 3</button>
             </article>
         </div>
 
         <!-- <section class="info-container hide"> -->
         <div class="info-container bg-washed-blue outline">
  <h2 class="band-name">Band Name</h2>
-            <article class="bio-card flex">
-               <img src="./assets/img/cool-band.jpg" class="w-25 h-25 pa3">
+            <article class="bio-card flex flex-column flex-row-ns items-center">
+               <!-- <img src="./assets/img/cool-band.jpg" class="w-25 h-25 pa3"> -->
 
-                <section class="band-info w-50">
+                <section class="band-info w-50 pa3">
                     <p class="years-active ">1980-2000</p>
                     <p class="genre">genre</p>
                     <p class="sales">5 woman group</p>
@@ -78,7 +77,7 @@
                 </section>
             </article>
 
-            <div class="hits-container flex outline">
+            <div class="hits-container flex flex-column flex-row-ns items-center outline">
 
                 <article class="hit-albums w-50">
                     <h3>Hit Albums</h3>
