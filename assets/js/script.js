@@ -11,6 +11,8 @@ var albumInfoEl = $("#album-info");
 var savedSearchesEl = $("#saved-searches");
 var searchInputFormEl = $("#search-input-form");
 var searchInputEl = $("#search-input-text");
+var similarSearchesEl = $(".search-similar");
+var searchHistoryEl = $(".search-history");
 
 var savedSearches = [];
 
@@ -98,6 +100,8 @@ function getArtistInformation(artist) {
             var similarArtistEl = $('<button>');
             similarArtistEl.addClass("flex w-100 bg-washed-blue");
             similarArtistEl.text(data.artist.similar.artist[idx].name);
+            // Add a data attribute with the search value
+            similarArtistEl.attr("data-search-val", data.artist.similar.artist[idx].name);
             relatedArtistsEl.append(similarArtistEl);
         }
 
@@ -360,15 +364,13 @@ function displaySavedSearches() {
         var searchEl = $("<button>");
         searchEl.addClass("flex w-100 bg-washed-blue");
         searchEl.text(savedSearches[idx]);
+        searchEl.attr("data-search-val", savedSearches[idx]);
         savedSearchesEl.append(searchEl);
     }
 }
 
-// Handle submit events for the search input
-searchInputFormEl.submit(function(event) {
-    event.preventDefault();
-    var searchInput = searchInputEl.val();
-
+// Perform a search for an artist
+function searchForArtist(searchInput) {
     if (!searchInput) {
         // Nothing was entered
         return;
@@ -386,9 +388,6 @@ searchInputFormEl.submit(function(event) {
         displaySavedSearches();
     }
 
-    // Clear the input field's value
-    searchInputEl.val("");
-
     // Show the bandName
     bandNameEl.text(searchInput);
 
@@ -398,7 +397,31 @@ searchInputFormEl.submit(function(event) {
     getAlbumsForArtist(searchInput);
     // Get the tracks for the artist
     getTracksForArtist(searchInput);
+}
+
+
+// Handle submit events for the search input
+searchInputFormEl.submit(function(event) {
+    event.preventDefault();
+    var searchInput = searchInputEl.val();
+
+    // Clear the input field's value
+    searchInputEl.val("");
+
+    searchForArtist(searchInput);
 });
+
+// Function to handle click events on the search buttons
+var searchButtonClickHandler = function(event) {
+    var clickedButton = $(event.target);
+    searchForArtist(clickedButton.attr("data-search-val"));
+}
+
+// Add a click listener for the Search Similar
+similarSearchesEl.on("click", "button", searchButtonClickHandler);
+
+// Add a click listener for the search history
+searchHistoryEl.on("click", "button", searchButtonClickHandler);
 
 // Show any persisted saved searches
 initializeSavedSearches();
