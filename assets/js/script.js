@@ -1,7 +1,10 @@
 var lastFMToken = "2b80e0b10a244c16881596344e29cbc1";
 var lastFMURL = "https://ws.audioscrobbler.com/2.0/?method=";
+var musicBrainzUrl = " https://musicbrainz.org/ws/2/artist/?query="
 
 var bandNameEl = $(".band-name");
+var artistInfoEl = $(".band-info")
+console.log(artistInfoEl)
 var artistBioEl = $(".bio");
 var relatedArtistsEl = $("#related-artists");
 var artistImageEl = $("#artist-image");
@@ -13,6 +16,8 @@ var searchInputEl = $("#search-input-text");
 var similarSearchesEl = $(".search-similar");
 var searchHistoryEl = $(".search-history");
 var searchButtonEl = $(".sh-search-btn");
+var modalEL = $(".modalEl");
+var modalCloseEl = $(".modal-close")
 var searchFormEl = $("#search-form");
 var defaultArtistToSearchFor = "Nirvana";
 
@@ -399,6 +404,59 @@ function displaySavedSearches() {
         searchHistoryEl.hide();
     }
 }
+function getArtistBio(artist){
+    artistInfoEl.empty();
+    
+    var artistUrl = musicBrainzUrl+ artist+"&fmt=json";
+    fetch(artistUrl).then(function(response){
+        if(response.ok){
+        return response.json();}
+        else{
+            console.log("error with fetch")
+        }}).then(function(data){
+            console.log(data);
+            console.log(data.artists);
+            //using 0 index will return the most popular search result
+            var artistType = data.artists[0].type;//will return person or group
+            var artistCountry = data.artists[0].area.name;//will return country artist is from
+            var artistCategory = data.artists[0].disambiguation;//will return short description of artist genre
+            var artistName = data.artists[0].name;//will return artist name
+            // var artistLifeSpan = data.artists[0].json["life-span"].begin + "-"+data.artists[0].json["life-span"].ended;
+            var artistNameEL = $("<p>");
+            // var yearsActiveEL = $("<p>");
+            var artistGenreEL = $("<p>");
+            var artistCountryEL = $("<p>");
+            var artistTypeEl = $("<p>");
+            // artistNameEL.text(artistName);
+            bandNameEl.text(artistName);
+            //bandNameEl.attr("h1");
+            // yearsActiveEL.text("Years Active " + artistLifeSpan);
+            if(!data.artists[0].disambiguation){
+                console.log("nothing")
+                artistCountryEL.text ("Country: " + artistCountry);
+                artistTypeEl.text("Type: " + artistType);
+                console.log(artistTypeEl)
+                artistInfoEl.append(artistNameEL);
+                // artistBioEL.append(yearsActiveEL);
+                artistInfoEl.append(artistGenreEL);
+                artistInfoEl.append( artistCountryEL);
+                artistInfoEl.append(artistTypeEl)
+            }else{
+            artistGenreEL.text("Genre: "+ artistCategory);
+            artistCountryEL.text ("Country: " + artistCountry);
+            artistTypeEl.text("Type: " + artistType);
+            console.log(artistTypeEl)
+            artistInfoEl.append(artistNameEL);
+            // artistBioEL.append(yearsActiveEL);
+            artistInfoEl.append(artistGenreEL);
+            artistInfoEl.append( artistCountryEL);
+            artistInfoEl.append(artistTypeEl)
+            }
+         
+
+            
+        })
+};
 
 // Perform a search for an artist
 function searchForArtist(searchInput) {
@@ -428,13 +486,31 @@ function searchForArtist(searchInput) {
     getAlbumsForArtist(searchInput);
     // Get the tracks for the artist
     getTracksForArtist(searchInput);
+    getArtistBio(searchInput);
+ 
 }
+
+//add is-active class to modal so it will popup if there 
+//is no user input
+function validateUserInput(userInput){
+    if(!userInput){
+        // modalEL.addclass("is-active");
+        // modalEl.classList.toggle("modal is-active");
+        console.log("inside if statement");
+
+        $(modalEL).addClass("is-active");
+        $(modalCloseEl).click(function() {
+            $(modalEL).removeClass("is-active");
+         });
+    }
+};
 
 
 // Handle submit events for the search input
 searchFormEl.submit(function(event) {
     event.preventDefault();
     var searchInput = searchInputEl.val();
+    validateUserInput(searchInput);
 
     // Clear the input field's value
     searchInputEl.val("");
