@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Magnificient Music Search</title>
     <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
 </head>
 
@@ -24,7 +24,7 @@
 
             <!-- <article class="new-search hide"> -->
             <article class="search-new flex">
-                <input class="bg-washed-blue w-100" type="text" placeholder="Search Artist...">
+                <input class="bg-washed-blue w-100" type="text" placeholder="Search Artist..." id="search-input-text">
                 <button class="sh-search-btn bg-washed-blue w-19 link dim black mw5 dt hide-child ba b--black-20 pa1 br2 pointer"><svg stroke="currentColor" fill="currentColor" stroke-width="0"
                         viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
@@ -36,24 +36,26 @@
                     </svg></button>
             </article>
 
-            <article class="search-similar">
+            <article class="search-similar dn">
                 <h3 class="white">Similar Artists</h3>
-                <button class="similar-1 w-100 bg-washed-blue link dim black mw5 dt hide-child ba b--black-20 pa1 br2 pointer">btn 1</button>
-                <button class="similar-2 w-100 bg-washed-blue link dim black mw5 dt hide-child ba b--black-20 pa1 br2 pointer">btn 2</button>
-                <button class="similar-3 w-100 bg-washed-blue link dim black mw5 dt hide-child ba b--black-20 pa1 br2 pointer">btn 3</button>
+                <div id="related-artists">
+                    <!-- Dynamically generated similar artists are shown here -->
+                    <!-- <button class="similar-1 flex w-100 bg-washed-blue">btn 1</button> -->
+                </div>
             </article>
 
-            <article class="search-history">
+            <article class="search-history dn">
                 <h3 class="white">Search History</h3>
-                <button class="recent-1 w-100 bg-washed-blue link dim black mw5 dt hide-child ba b--black-20 pa1 br2 pointer">btn 1</button>
-                <button class="recent-2 w-100 bg-washed-blue link dim black mw5 dt hide-child ba b--black-20 pa1 br2 pointer">btn 2</button>
-                <button class="recent-3 w-100 tc bg-washed-blue link dim black mw5 dt hide-child ba b--black-20 pa1 br2 pointer">btn 3</button>
+                <div id="saved-searches">
+                    <!-- Dynamically generated buttons for the saved searches -->
+                    <!-- <button class="recent-1 flex w-100 bg-washed-blue">btn 1</button> -->
+                </div>
             </article>
         </div>
 
         <!-- <section class="info-container hide"> -->
         <div class="info-container bg-washed-blue outline">
- <h2 class="band-name">Band Name</h2>
+            <h2 class="band-name">Band Name</h2>
             <article class="bio-card flex flex-column flex-row-ns items-center">
                <!-- <img src="./assets/img/cool-band.jpg" class="w-25 h-25 pa3"> -->
 
@@ -77,65 +79,35 @@
                 </section>
             </article>
 
-            <div class="hits-container flex flex-column flex-row-ns items-center outline">
+            <div class="hits-container flex flex-column flex-row-ns outline">
 
                 <article class="hit-albums w-50">
                     <h3>Hit Albums</h3>
-                    <section class="album-card flex">
-                        <img src="./assets/img/album-img.jpg" class="w-25 h-25 pa3">
-                        <p class="album-summary v-top">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae
-                            perspiciatis molestiae odit hic. Suscipit libero pariatur, dolorem nam explicabo omnis           
-                        </p>
-                    </section>
-
-                    <section class="album-card flex">
-                        <img src="./assets/img/album-img.jpg" class="w-25 h-25 pa3">
-                        <p class="album-summary v-top">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae
-                            perspiciatis molestiae odit hic. Suscipit libero pariatur, dolorem nam explicabo omnis           
-                        </p>
-                    </section>
-
-                    <section class="album-card flex">
-                        <img src="./assets/img/album-img.jpg" class="w-25 h-25 pa3">
-                        <p class="album-summary v-top">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae
-                            perspiciatis molestiae odit hic. Suscipit libero pariatur, dolorem nam explicabo omnis           
-                        </p>
-                    </section>
-
-                    <section class="album-card flex">
-                        <img src="./assets/img/album-img.jpg" class="w-25 h-25 pa3">
-                        <p class="album-summary v-top">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae
-                            perspiciatis molestiae odit hic. Suscipit libero pariatur, dolorem nam explicabo omnis           
-                        </p>
-                    </section>
-
-                    <section class="album-card flex">
-                        <img src="./assets/img/album-img.jpg" class="w-25 h-25 pa3">
-                        <p class="album-summary v-top">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae
-                            perspiciatis molestiae odit hic. Suscipit libero pariatur, dolorem nam explicabo omnis           
-                        </p>
-                    </section>
-                    
+                    <div id="album-info">
+                        <!-- Dynamically generated album information will be shown here -->
+                        <!-- <section class="album-card flex"> -->
+                            <!-- <img src="./assets/img/album-img.jpg" class="w-25 h-25 pa3"> -->
+                            <!-- <p class="album-summary v-top">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae -->
+                                <!-- perspiciatis molestiae odit hic. Suscipit libero pariatur, dolorem nam explicabo omnis            -->
+                            <!-- </p> -->
+                        <!-- </section> -->
+                    </div>                    
                 </article>
 
-                <article class="hit-trakcs w-50">
+                <article class="hit-tracks w-50">
                     <h3>Hit Songs</h3>
-                    <ol class="tracks-list"></ol>
-                    <li>Track 1</li>
-                    <li>Track 2</li>
-                    <li>Track 3</li>
-                    <li>Track 4</li>
-                    <li>Track 5</li>
-                    <li>Track 6</li>
-                    <li>Track 7</li>
-                    <li>Track 8</li>
-                    <li>Track 9</li>
-                    <li>Track 10</li>
+                    <ol class="tracks-list list">
+                        <!-- List of tracks for the artist are shown here -->
+                        <!-- <li>Track 1</li> -->
+                    </ol>
                 </article>
 
         </section>
 
     </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./assets/js/script.js"></script>
 
 </body>
 
