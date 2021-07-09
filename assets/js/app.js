@@ -9,7 +9,7 @@ var similarArtistsEl = $("#similar-artists");
 var artistTracksEl = $("#artist-tracks");
 var albumInfoEl = $("#album-info");
 var modalEL = $("#modal");
-var userInput = "";
+// var userInput = "";
 
 // Create a URL to fetch data from LastFM
 // method is the value for the LastFM method paramerer
@@ -321,7 +321,31 @@ function getAlbumInformation(artist, album) {
         console.log(error);
     });
 }
-function validateUserInput(){
+
+function getArtistBio(artist){
+    var artistUrl = musicBrainzUrl+ artist+"&fmt=json";
+    fetch(artistUrl).then(function(response){
+        if(response.ok){
+        return response.json();}
+        else{
+            console.log("error with fetch")
+        }}).then(function(data){
+            console.log(data);
+            console.log(data.artists);
+            //using 0 index will return the most popular search result
+            var artistType = data.artists[0].type;//will return person or group
+            var artistCountry = data.artists[0].area.name;//will return country artist is from
+            var artistCategory = data.artists[0].disambiguation;//will return short description of artist genre
+            var artistName = data.artists[0].name;//will return artist name
+            var artistLifeSpan = data.artists[0].json["life-span"].begin + "-"+data.artists[0].json["life-span"].ended;
+
+
+        })
+
+};
+//add is-actice class to modal so it will popup if there 
+//is no user input
+function validateUserInput(userInput){
     if(userInput =""){
         modalEL.addclass("is-active");
     }
