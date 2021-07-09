@@ -197,7 +197,12 @@ function getTracksForArtist(artist) {
             trackElName.text(data.toptracks.track[idx].name);
             trackEl.append(trackElName);
             trackEl.append(trackSummaryEl);
-            trackEl.append($("<h5>Similar Songs</h5>"));
+            var similarSongsDescEl = $('<h5>');
+            // Don't show the header until it is known there are similar songs
+            similarSongsDescEl.addClass("dn");
+            similarSongsDescEl.attr("data-similar-songs-to-header", data.toptracks.track[idx].name);
+            similarSongsDescEl.text("Similar Songs");
+            trackEl.append(similarSongsDescEl);
             trackEl.append(similarSongsEl);
             artistTracksEl.append(trackEl);
             // Show information about the song
@@ -230,10 +235,11 @@ function getSimilarSongs(songName, songArtist) {
         // Check if similar tracks were provided
         if (data.similartracks) {
             // Only show 3 similar tracks
+            // Escape ' and ] in the songName so they are not interpreted as part of the CSS selector
+            var escapedSongName = songName.replace(/'/g, "\\'");
+            escapedSongName = escapedSongName.replace(/]/g, "\\]");
             for (var idx = 0; idx < data.similartracks.track.length && (idx < 3); idx++) {
-                // Escape ' and ] in the songName so they are not interpreted as part of the CSS selector
-                var escapedSongName = songName.replace(/'/g, "\\'");
-                escapedSongName = escapedSongName.replace(/]/g, "\\]");
+
                 var parentElem = $("[data-similar-songs-to='" + escapedSongName + "']");
                 parentElem = parentElem.append("<li>");
                 // left align
@@ -248,6 +254,10 @@ function getSimilarSongs(songName, songArtist) {
             }
             if (data.similartracks.track.length === 0) {
                 console.log("No similar tracks found for: " + songName);
+            } else {
+                // Display the similar songs header
+                var elem = $("[data-similar-songs-to-header='" + escapedSongName + "']");
+                elem.removeClass("dn");
             }
         }
       }
