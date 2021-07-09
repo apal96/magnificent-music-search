@@ -535,3 +535,15 @@ initializeSavedSearches();
 
 // Show default artist when the page is started
 searchForArtist(defaultArtistToSearchFor);
+
+var validator = new FormValidator('search-form-name', [{
+    name: 'search-input-name',
+    display: 'required',
+    rules: 'required'
+}], function(errors) {
+    if (errors.length > 0) {
+        // Show the errors
+        console.log("There were errors");
+        swal("Please enter something to search for");
+    }
+});
