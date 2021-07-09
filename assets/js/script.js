@@ -328,18 +328,20 @@ function getAlbumInformation(artist, album) {
         }
         parentElem.append(albumImageEl);
 
+        // Add a summary
+        var summaryEl = $('<p>');
+
         // Check that the summary is available
         if (data.album && data.album.wiki) {
-            // Add a summary
             var summaryText = data.album.wiki.summary;
-            var summaryEl = $('<p>');
             summaryEl.html(summaryText);
-            // float to the right
-            summaryEl.addClass("album-summary v-top");
-            parentElem.append(summaryEl);
         } else {
             console.log("No summary available for " + album);
+            // No summary so show the album name
+            summaryEl.text(album);
         }
+        summaryEl.addClass("album-summary v-top");
+        parentElem.append(summaryEl);
 
       }
     ).catch(function (error) {
