@@ -13,6 +13,7 @@ var searchInputEl = $("#search-input-text");
 var similarSearchesEl = $(".search-similar");
 var searchHistoryEl = $(".search-history");
 var searchButtonEl = $(".sh-search-btn");
+var searchFormEl = $("#search-form");
 var defaultArtistToSearchFor = "Nirvana";
 
 var savedSearches = [];
@@ -431,7 +432,7 @@ function searchForArtist(searchInput) {
 
 
 // Handle submit events for the search input
-searchButtonEl.click(function(event) {
+searchFormEl.submit(function(event) {
     event.preventDefault();
     var searchInput = searchInputEl.val();
 
