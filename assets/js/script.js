@@ -185,7 +185,7 @@ function getTracksForArtist(artist) {
         // Limit the display to 5 top tracks
         for (var idx = 0; (idx < data.toptracks.track.length) && (idx < 5); idx++) {
             var trackEl = $('<li>');
-            trackEl.addClass("ba b--silver");
+            trackEl.addClass("ma4 ba b--silver");
             var trackElName = $('<h4>')
             // Div to fill in summary info for the song when it is received from the API 
             var trackSummaryEl = $('<div>')
@@ -283,7 +283,7 @@ function getAlbumsForArtist(artist) {
             // Ignore null album names
             if (data.topalbums.album[idx].name !== "(null)") {
                 var albumEl = $('<section>');
-                albumEl.addClass("album-card flex ba b--silver");
+                albumEl.addClass("album-card flex ba b--silver ma4");
                 // Add a data attribute for the album name
                 albumEl.attr("data-album-info-for", data.topalbums.album[idx].name);
                 albumInfoEl.append(albumEl);
