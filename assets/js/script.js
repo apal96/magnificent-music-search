@@ -185,7 +185,7 @@ function getTracksForArtist(artist) {
         // Limit the display to 5 top tracks
         for (var idx = 0; (idx < data.toptracks.track.length) && (idx < 5); idx++) {
             var trackEl = $('<div>');
-            trackEl.addClass("ma4-ns ba b--silver");
+            trackEl.addClass("ma4-ns ba pa3 b--silver");
             var trackElName = $('<h4>')
             // Div to fill in summary info for the song when it is received from the API 
             var trackSummaryEl = $('<div>')
@@ -355,7 +355,7 @@ function getAlbumInformation(artist, album) {
             // No summary so show the album name
             summaryEl.text(album);
         }
-        summaryEl.addClass("album-summary v-top");
+        summaryEl.addClass("album-summary pa3 v-top");
         parentElem.append(summaryEl);
 
       }
