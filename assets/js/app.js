@@ -1,5 +1,6 @@
 var lastFMToken = "2b80e0b10a244c16881596344e29cbc1";
 var lastFMURL = "https://ws.audioscrobbler.com/2.0/?method=";
+var musicBrainzUrl = " https://musicbrainz.org/ws/2/artist/?query="
 
 var artistBioEl = $("#artist-bio");
 var relatedArtistsEl = $("#related-artists");
@@ -7,6 +8,8 @@ var artistImagesEl = $("#artist-images");
 var similarArtistsEl = $("#similar-artists");
 var artistTracksEl = $("#artist-tracks");
 var albumInfoEl = $("#album-info");
+var modalEL = $("#modal");
+var userInput = "";
 
 // Create a URL to fetch data from LastFM
 // method is the value for the LastFM method paramerer
@@ -318,3 +321,8 @@ function getAlbumInformation(artist, album) {
         console.log(error);
     });
 }
+function validateUserInput(){
+    if(userInput =""){
+        modalEL.addclass("is-active");
+    }
+};
