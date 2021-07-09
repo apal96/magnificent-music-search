@@ -23,10 +23,10 @@
 
     <main class="flex tc flex-column flex-row-ns">
 
-        <div class="search-history-container pa3 outline bg-blue w-100">
+        <article class="search-history-container pa3 outline bg-blue w-100 center">
 
             <!-- <article class="new-search hide"> -->
-            <article class="search-new flex">
+            <form class="search-new flex" id="search-form">
                 <input class="bg-washed-blue w-100" type="text" placeholder="Search Artist..." id="search-input-text">
                 <button class="sh-search-btn bg-washed-blue w-19 link dim black mw5 dt hide-child ba b--black-20 pa1 br2 pointer"><svg stroke="currentColor" fill="currentColor" stroke-width="0"
                         viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
@@ -37,45 +37,7 @@
                             d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
                             clip-rule="evenodd"></path>
                     </svg></button>
-            </article>
-            <div class = "container">
-            <!-- <div class="modal is-clipped modalEl">
-                <div class="modal-background"></div>
-                <div class="modal-content ">
-                    <div class="box">
-                        Please enter an artist
-                      </div>
-                </div>
-                <button class="modal-close is-large" aria-label="close"></button> -->
-              <!-- </div> -->
-              <!-- [1] -->
-<div id="modal-1" aria-hidden="true">
-
-    <!-- [2] -->
-    <div tabindex="-1" data-micromodal-close>
-  
-      <!-- [3] -->
-      <div role="dialog" aria-modal="true" aria-labelledby="modal-1-title" >
-  
-  
-        <header>
-          <h2 id="modal-1-title">
-            Modal Title
-          </h2>
-  
-          <!-- [4] -->
-          <button aria-label="Close modal" data-micromodal-close></button>
-        </header>
-  
-        <div id="modal-1-content">
-          Modal Content
-        </div>
-  
-      </div>
-    </div>
-  </div>
-         
-              </div>
+                </form>
 
             <article class="search-similar dn">
                 <h3 class="white">Similar Artists</h3>
@@ -92,7 +54,7 @@
                     <!-- <button class="recent-1 flex w-100 bg-washed-blue">btn 1</button> -->
                 </div>
             </article>
-        </div>
+        </article>
 
         <!-- <section class="info-container hide"> -->
         <div class="info-container bg-washed-blue outline">
@@ -108,7 +70,7 @@
                     <p class="country">Australia</p> -->
                 </section>
 
-                <section class="snippet w-50 pa3">
+                <section class="snippet w-50-ns w-100 pa5">
                     <p class="bio">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium reiciendis nemo
                         rerum, tempore quidem magnam est, unde necessitatibus sunt praesentium perferendis in laboriosam
                         quo distinctio possimus eum corrupti cumque enim accusamus eveniet dolorem, libero corporis.
@@ -123,7 +85,7 @@
 
             <div class="hits-container flex flex-column flex-row-ns outline">
 
-                <article class="hit-albums w-50">
+                <article class="hit-albums w-100 w-50-ns">
                     <h3>Hit Albums</h3>
                     <div id="album-info">
                         <!-- Dynamically generated album information will be shown here -->
@@ -136,12 +98,12 @@
                     </div>                    
                 </article>
 
-                <article class="hit-tracks w-50">
+                <article class="hit-tracks w-50-ns w-100">
                     <h3>Hit Songs</h3>
-                    <ol class="tracks-list list">
+                    <div class="tracks-list">
                         <!-- List of tracks for the artist are shown here -->
-                        <!-- <li>Track 1</li> -->
-                    </ol>
+                        <!-- <div>Track 1</div> -->
+                    </div>
                 </article>
 
         </section>

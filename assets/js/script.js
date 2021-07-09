@@ -18,6 +18,8 @@ var searchHistoryEl = $(".search-history");
 var searchButtonEl = $(".sh-search-btn");
 var modalEL = $(".modalEl");
 var modalCloseEl = $(".modal-close")
+var searchFormEl = $("#search-form");
+var defaultArtistToSearchFor = "Nirvana";
 
 var savedSearches = [];
 
@@ -189,8 +191,8 @@ function getTracksForArtist(artist) {
         // Show the top tracks
         // Limit the display to 5 top tracks
         for (var idx = 0; (idx < data.toptracks.track.length) && (idx < 5); idx++) {
-            var trackEl = $('<li>');
-            trackEl.addClass("ma4 ba b--silver");
+            var trackEl = $('<div>');
+            trackEl.addClass("ma4-ns ba pa3 b--silver");
             var trackElName = $('<h4>')
             // Div to fill in summary info for the song when it is received from the API 
             var trackSummaryEl = $('<div>')
@@ -298,7 +300,7 @@ function getAlbumsForArtist(artist) {
             // Ignore null album names
             if (data.topalbums.album[idx].name !== "(null)") {
                 var albumEl = $('<section>');
-                albumEl.addClass("album-card flex ba b--silver ma4");
+                albumEl.addClass("album-card flex flex-column flex-row-ns ba b--silver ma4-ns");
                 // Add a data attribute for the album name
                 albumEl.attr("data-album-info-for", data.topalbums.album[idx].name);
                 albumInfoEl.append(albumEl);
@@ -336,7 +338,7 @@ function getAlbumInformation(artist, album) {
 
         // Add any images
         var albumImageEl = $("<img>");
-        albumImageEl.addClass("w-25 h-25 pa3");
+        albumImageEl.addClass("w-25-ns w-100 h-25 pa3-ns");
         if (data.album.image.length) {
             // Show the last image
             albumImageEl.attr("src", data.album.image[data.album.image.length - 1]["#text"]);
@@ -360,7 +362,7 @@ function getAlbumInformation(artist, album) {
             // No summary so show the album name
             summaryEl.text(album);
         }
-        summaryEl.addClass("album-summary v-top");
+        summaryEl.addClass("album-summary pa3 v-top");
         parentElem.append(summaryEl);
 
       }
@@ -505,7 +507,7 @@ function validateUserInput(userInput){
 
 
 // Handle submit events for the search input
-searchButtonEl.click(function(event) {
+searchFormEl.submit(function(event) {
     event.preventDefault();
     var searchInput = searchInputEl.val();
     validateUserInput(searchInput);
@@ -530,3 +532,6 @@ searchHistoryEl.on("click", "button", searchButtonClickHandler);
 
 // Show any persisted saved searches
 initializeSavedSearches();
+
+// Show default artist when the page is started
+searchForArtist(defaultArtistToSearchFor);
