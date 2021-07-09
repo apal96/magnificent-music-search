@@ -276,16 +276,21 @@ function getAlbumsForArtist(artist) {
         albumInfoEl.empty();
         // Show the top albums
         // Limit the display to 5 top albums
-        for (var idx = 0; (idx < data.topalbums.album.length) && (idx < 5); idx++) {
+        var numAlbums = 0;
+        for (var idx = 0; (idx < data.topalbums.album.length) && (numAlbums < 5); idx++) {
             // Album will be a section like:
             //   <section class="album-card flex">
-            var albumEl = $('<section>');
-            albumEl.addClass("album-card flex ba b--silver");
-            // Add a data attribute for the album name
-            albumEl.attr("data-album-info-for", data.topalbums.album[idx].name);
-            albumInfoEl.append(albumEl);
-            // Query the API for the album information
-            getAlbumInformation(artist, data.topalbums.album[idx].name);
+            // Ignore null album names
+            if (data.topalbums.album[idx].name !== "(null)") {
+                var albumEl = $('<section>');
+                albumEl.addClass("album-card flex ba b--silver");
+                // Add a data attribute for the album name
+                albumEl.attr("data-album-info-for", data.topalbums.album[idx].name);
+                albumInfoEl.append(albumEl);
+                // Query the API for the album information
+                getAlbumInformation(artist, data.topalbums.album[idx].name);
+                numAlbums++;
+            }
         }
       }
     ).catch(function (error) {
