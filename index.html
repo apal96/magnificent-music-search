@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Magnificient Music Search</title>
+    <link rel="stylesheet" href="https://unpkg.com/micromodal/dist/micromodal.min.js"/> 
     <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 </head>
@@ -38,15 +39,42 @@
                     </svg></button>
             </article>
             <div class = "container">
-            <div class="modal is-clipped">
+            <!-- <div class="modal is-clipped modalEl">
                 <div class="modal-background"></div>
                 <div class="modal-content ">
                     <div class="box">
                         Please enter an artist
                       </div>
                 </div>
-                <button class="modal-close is-large" aria-label="close"></button>
-              </div>
+                <button class="modal-close is-large" aria-label="close"></button> -->
+              <!-- </div> -->
+              <!-- [1] -->
+<div id="modal-1" aria-hidden="true">
+
+    <!-- [2] -->
+    <div tabindex="-1" data-micromodal-close>
+  
+      <!-- [3] -->
+      <div role="dialog" aria-modal="true" aria-labelledby="modal-1-title" >
+  
+  
+        <header>
+          <h2 id="modal-1-title">
+            Modal Title
+          </h2>
+  
+          <!-- [4] -->
+          <button aria-label="Close modal" data-micromodal-close></button>
+        </header>
+  
+        <div id="modal-1-content">
+          Modal Content
+        </div>
+  
+      </div>
+    </div>
+  </div>
+         
               </div>
 
             <article class="search-similar dn">

@@ -6,7 +6,6 @@ var bandNameEl = $(".band-name");
 var artistInfoEl = $(".band-info")
 console.log(artistInfoEl)
 var artistBioEl = $(".bio");
-console.log(artistBioEl)
 var relatedArtistsEl = $("#related-artists");
 var artistImageEl = $("#artist-image");
 var similarArtistsEl = $("#similar-artists");
@@ -17,6 +16,8 @@ var searchInputEl = $("#search-input-text");
 var similarSearchesEl = $(".search-similar");
 var searchHistoryEl = $(".search-history");
 var searchButtonEl = $(".sh-search-btn");
+var modalEL = $(".modalEl");
+var modalCloseEl = $(".modal-close")
 
 var savedSearches = [];
 
@@ -403,6 +404,7 @@ function displaySavedSearches() {
 }
 function getArtistBio(artist){
     artistInfoEl.empty();
+    
     var artistUrl = musicBrainzUrl+ artist+"&fmt=json";
     fetch(artistUrl).then(function(response){
         if(response.ok){
@@ -490,9 +492,14 @@ function searchForArtist(searchInput) {
 //is no user input
 function validateUserInput(userInput){
     if(!userInput){
-        modalEL.addclass("is-active");
-        modalEl.classList.toggle("modal is-active");
-        
+        // modalEL.addclass("is-active");
+        // modalEl.classList.toggle("modal is-active");
+        console.log("inside if statement");
+
+        $(modalEL).addClass("is-active");
+        $(modalCloseEl).click(function() {
+            $(modalEL).removeClass("is-active");
+         });
     }
 };
 
@@ -501,6 +508,7 @@ function validateUserInput(userInput){
 searchButtonEl.click(function(event) {
     event.preventDefault();
     var searchInput = searchInputEl.val();
+    validateUserInput(searchInput);
 
     // Clear the input field's value
     searchInputEl.val("");
