@@ -98,7 +98,7 @@ function getArtistInformation(artist) {
         // Show up to 3 related artists
         for (var idx = 0; (idx < data.artist.similar.artist.length) && (idx < 3); idx++) {
             var similarArtistEl = $('<button>');
-            similarArtistEl.addClass("w-100 bg-washed-blue link dim black mw5 dt hide-child ba b--black-20 pa1 br2 pointer");
+            similarArtistEl.addClass("w-100 bg-washed-blue link dim black mw5 dt hide-child ba b--black-20 pa1 br2 pointer center");
             similarArtistEl.text(data.artist.similar.artist[idx].name);
             // Add a data attribute with the search value
             similarArtistEl.attr("data-search-val", data.artist.similar.artist[idx].name);
@@ -368,7 +368,7 @@ function displaySavedSearches() {
         // Create button element similar to this element
         // <button class="recent-1 flex w-100 bg-washed-blue">btn 1</button> 
         var searchEl = $("<button>");
-        searchEl.addClass("w-100 bg-washed-blue link dim black mw5 dt hide-child ba b--black-20 pa1 br2 pointer");
+        searchEl.addClass("w-100 bg-washed-blue link dim black mw5 dt hide-child ba b--black-20 pa1 br2 pointer center");
         searchEl.text(savedSearches[idx]);
         searchEl.attr("data-search-val", savedSearches[idx]);
         savedSearchesEl.append(searchEl);
