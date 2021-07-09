@@ -13,6 +13,7 @@ var searchInputEl = $("#search-input-text");
 var similarSearchesEl = $(".search-similar");
 var searchHistoryEl = $(".search-history");
 var searchButtonEl = $(".sh-search-btn");
+var defaultArtistToSearchFor = "Nirvana";
 
 var savedSearches = [];
 
@@ -454,3 +455,6 @@ searchHistoryEl.on("click", "button", searchButtonClickHandler);
 
 // Show any persisted saved searches
 initializeSavedSearches();
+
+// Show default artist when the page is started
+searchForArtist(defaultArtistToSearchFor);
