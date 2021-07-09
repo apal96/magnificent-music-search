@@ -8,11 +8,7 @@ var artistImagesEl = $("#artist-images");
 var similarArtistsEl = $("#similar-artists");
 var artistTracksEl = $("#artist-tracks");
 var albumInfoEl = $("#album-info");
-var artistNameEl = $(".band-name");
-var yearsActiveEL = $(".years-active");
-var artistGenreEL = $(".genre");
-var artistCountryEL = $(".country");
-var artistTypeEl = $(".sales");
+var artistBioEL = $(".band-info");
 var modalEL = $("#modal");
 
 // var userInput = "";
@@ -344,13 +340,27 @@ function getArtistBio(artist){
             var artistCategory = data.artists[0].disambiguation;//will return short description of artist genre
             var artistName = data.artists[0].name;//will return artist name
             // var artistLifeSpan = data.artists[0].json["life-span"].begin + "-"+data.artists[0].json["life-span"].ended;
+            var artistNameEL = $("<p>");
+            // var yearsActiveEL = $("<p>");
+            var artistGenreEL = $("<p>");
+            var artistCountryEL = $("<p>");
+            var artistTypeEl = $("<p>");
+            artistNameEL.text(artistName);
+            // yearsActiveEL.text("Years Active " + artistLifeSpan);
+            artistGenreEL.text("Genre "+ artistCategory);
+            artistCountryEL.text ("Country: " + artistCountry);
+            artistTypeEl.text("Type: " + artistType);
+            console.log(artistTypeEl)
+            artistBioEL.append(artistNameEL);
+            // artistBioEL.append(yearsActiveEL);
+            artistBioEL.append(artistGenreEL);
+            artistBioEL.append( artistCountryEL);
+            artistBioEL.append(artistTypeEl)
+         
 
-            artistNameEl.append(artistName);
-            yearsActiveEL.append("Years Active " + artistLifeSpan);
-            artistGenreEL.append("Genre "+ artistCategory);
-            artistCountryEL.append("County: " + artistCountry);
-            artistTypeEl.append("Type: " + artistType);
+            
         })
+        
 
 };
 //add is-active class to modal so it will popup if there 
@@ -358,5 +368,7 @@ function getArtistBio(artist){
 function validateUserInput(userInput){
     if(!userInput){
         modalEL.addclass("is-active");
+        modalEl.classList.toggle("modal is-active");
+        
     }
 };
