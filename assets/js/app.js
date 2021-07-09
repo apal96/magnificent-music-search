@@ -8,7 +8,13 @@ var artistImagesEl = $("#artist-images");
 var similarArtistsEl = $("#similar-artists");
 var artistTracksEl = $("#artist-tracks");
 var albumInfoEl = $("#album-info");
+var artistNameEl = $(".band-name");
+var yearsActiveEL = $(".years-active");
+var artistGenreEL = $(".genre");
+var artistCountryEL = $(".country");
+var artistTypeEl = $(".sales");
 var modalEL = $("#modal");
+
 // var userInput = "";
 
 // Create a URL to fetch data from LastFM
@@ -337,16 +343,20 @@ function getArtistBio(artist){
             var artistCountry = data.artists[0].area.name;//will return country artist is from
             var artistCategory = data.artists[0].disambiguation;//will return short description of artist genre
             var artistName = data.artists[0].name;//will return artist name
-            var artistLifeSpan = data.artists[0].json["life-span"].begin + "-"+data.artists[0].json["life-span"].ended;
+            // var artistLifeSpan = data.artists[0].json["life-span"].begin + "-"+data.artists[0].json["life-span"].ended;
 
-
+            artistNameEl.append(artistName);
+            yearsActiveEL.append("Years Active " + artistLifeSpan);
+            artistGenreEL.append("Genre "+ artistCategory);
+            artistCountryEL.append("County: " + artistCountry);
+            artistTypeEl.append("Type: " + artistType);
         })
 
 };
-//add is-actice class to modal so it will popup if there 
+//add is-active class to modal so it will popup if there 
 //is no user input
 function validateUserInput(userInput){
-    if(userInput =""){
+    if(!userInput){
         modalEL.addclass("is-active");
     }
 };
