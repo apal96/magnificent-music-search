@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Magnificient Music Search</title>
     <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+
 </head>
 </head>
 
@@ -25,8 +25,8 @@
         <article class="search-history-container pa3 outline bg-blue w-100 center">
 
             <!-- <article class="new-search hide"> -->
-            <form class="search-new flex" id="search-form">
-                <input class="bg-washed-blue w-100" type="text" placeholder="Search Artist..." id="search-input-text">
+            <form class="search-new flex" id="search-form" name="search-form-name">
+                <input class="bg-washed-blue w-100" type="text" placeholder="Search Artist..." id="search-input-text" name="search-input-name">
                 <button class="sh-search-btn bg-washed-blue w-19 link dim black mw5 dt hide-child ba b--black-20 pa1 br2 pointer"><svg stroke="currentColor" fill="currentColor" stroke-width="0"
                         viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
@@ -110,6 +110,7 @@
     </main>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="./assets/js/script.js"></script>
 
 </body>

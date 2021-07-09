@@ -90,8 +90,12 @@ function getArtistInformation(artist) {
     
     fetch(createLastFMURL("artist.getInfo", artist, undefined)).then(function(response) {
         if (response.ok) {
+            console.log("hello rsponse ok");
             return response.json();
+            
         } else {
+            console.log("hello fail")
+            validateSearchInput(response,artist);
             throw new Error(response.statusText);
         }
     }
@@ -494,14 +498,14 @@ function searchForArtist(searchInput) {
 //is no user input
 function validateUserInput(userInput){
     if(!userInput){
-        // modalEL.addclass("is-active");
-        // modalEl.classList.toggle("modal is-active");
-        console.log("inside if statement");
+        swal("Please enter something to search for");
+    }
+};
+function validateSearchInput(fetchResponse,searchResult){
+    if(fetchResponse.status===404){
+        //console.log("could not find artist"+ artistNameSearch)
+        swal("Could not find artist"+ searchResult);
 
-        $(modalEL).addClass("is-active");
-        $(modalCloseEl).click(function() {
-            $(modalEL).removeClass("is-active");
-         });
     }
 };
 
