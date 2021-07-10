@@ -303,7 +303,7 @@ function getAlbumsForArtist(artist) {
             // Ignore null album names
             if (data.topalbums.album[idx].name !== "(null)") {
                 var albumEl = $('<section>');
-                albumEl.addClass("album-card flex flex-column flex-row-ns ba b--silver ma4-ns");
+                albumEl.addClass("album-card flex flex-column flex-row-ns ma4-ns");
                 // Add a data attribute for the album name
                 albumEl.attr("data-album-info-for", data.topalbums.album[idx].name);
                 albumInfoEl.append(albumEl);
@@ -338,6 +338,8 @@ function getAlbumInformation(artist, album) {
         var escapedAlbumName = album.replace(/'/g, "\\'");
         escapedAlbumName = escapedAlbumName.replace(/]/g, "\\]");
         var parentElem = $("[data-album-info-for='" + escapedAlbumName + "']");
+        // The data was found so add a border. Do it here so a border doesn't show if the API call for the album fails
+        parentElem.addClass("ba b--silver");
 
         // Add any images
         var albumImageEl = $("<img>");
