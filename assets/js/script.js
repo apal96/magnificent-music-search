@@ -92,6 +92,7 @@ function getArtistInformation(artist) {
         if (response.ok) {
             return response.json();
         } else {
+            artistBioEl.html("Artist not found");
             throw new Error(response.statusText);
         }
     }
