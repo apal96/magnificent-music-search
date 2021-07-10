@@ -254,7 +254,9 @@ function getSimilarSongs(songName, songArtist) {
                 var similarSongNameEl = $('<span>');
                 similarSongNameEl.text(data.similartracks.track[idx].name);
                 var similarSongArtistEl = $('<span>');
+                similarSongArtistEl.addClass("underline dark-blue pointer similar-song-artist");
                 similarSongArtistEl.text(data.similartracks.track[idx].artist.name);
+                similarSongArtistEl.attr("data-search-val", data.similartracks.track[idx].artist.name);
                 parentElem.append(similarSongNameEl);
                 parentElem.append($('<span>,&nbsp</span>'));
                 parentElem.append(similarSongArtistEl);
@@ -477,6 +479,10 @@ function searchForArtist(searchInput) {
         displaySavedSearches();
     }
 
+    // Move to the top of the page in case if the page was scrolled down
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+
     // Show the bandName
     bandNameEl.text(searchInput);
 
@@ -522,6 +528,9 @@ similarSearchesEl.on("click", "button", searchButtonClickHandler);
 
 // Add a click listener for the search history
 searchHistoryEl.on("click", "button", searchButtonClickHandler);
+
+// Add a click listener for the artist for similar songs
+artistTracksEl.on("click", ".similar-song-artist", searchButtonClickHandler);
 
 // Show any persisted saved searches
 initializeSavedSearches();
