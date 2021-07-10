@@ -355,6 +355,7 @@ function getAlbumInformation(artist, album) {
 
         // Add a summary
         var summaryEl = $('<p>');
+        summaryEl.addClass("w-70-ns pa3-ns");
 
         // Check that the summary is available
         if (data.album && data.album.wiki) {
