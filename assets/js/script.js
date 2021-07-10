@@ -92,6 +92,7 @@ function getArtistInformation(artist) {
         if (response.ok) {
             return response.json();
         } else {
+            artistBioEl.html("Artist not found");
             throw new Error(response.statusText);
         }
     }
@@ -254,7 +255,9 @@ function getSimilarSongs(songName, songArtist) {
                 var similarSongNameEl = $('<span>');
                 similarSongNameEl.text(data.similartracks.track[idx].name);
                 var similarSongArtistEl = $('<span>');
+                similarSongArtistEl.addClass("underline dark-blue pointer similar-song-artist");
                 similarSongArtistEl.text(data.similartracks.track[idx].artist.name);
+                similarSongArtistEl.attr("data-search-val", data.similartracks.track[idx].artist.name);
                 parentElem.append(similarSongNameEl);
                 parentElem.append($('<span>,&nbsp</span>'));
                 parentElem.append(similarSongArtistEl);
@@ -300,7 +303,7 @@ function getAlbumsForArtist(artist) {
             // Ignore null album names
             if (data.topalbums.album[idx].name !== "(null)") {
                 var albumEl = $('<section>');
-                albumEl.addClass("album-card flex flex-column flex-row-ns ba b--silver ma4-ns");
+                albumEl.addClass("album-card flex flex-column flex-row-ns ma4-ns");
                 // Add a data attribute for the album name
                 albumEl.attr("data-album-info-for", data.topalbums.album[idx].name);
                 albumInfoEl.append(albumEl);
@@ -335,6 +338,8 @@ function getAlbumInformation(artist, album) {
         var escapedAlbumName = album.replace(/'/g, "\\'");
         escapedAlbumName = escapedAlbumName.replace(/]/g, "\\]");
         var parentElem = $("[data-album-info-for='" + escapedAlbumName + "']");
+        // The data was found so add a border. Do it here so a border doesn't show if the API call for the album fails
+        parentElem.addClass("ba b--silver");
 
         // Add any images
         var albumImageEl = $("<img>");
@@ -352,6 +357,7 @@ function getAlbumInformation(artist, album) {
 
         // Add a summary
         var summaryEl = $('<p>');
+        summaryEl.addClass("w-70-ns pa3-ns");
 
         // Check that the summary is available
         if (data.album && data.album.wiki) {
@@ -477,6 +483,10 @@ function searchForArtist(searchInput) {
         displaySavedSearches();
     }
 
+    // Move to the top of the page in case if the page was scrolled down
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+
     // Show the bandName
     bandNameEl.text(searchInput);
 
@@ -522,6 +532,9 @@ similarSearchesEl.on("click", "button", searchButtonClickHandler);
 
 // Add a click listener for the search history
 searchHistoryEl.on("click", "button", searchButtonClickHandler);
+
+// Add a click listener for the artist for similar songs
+artistTracksEl.on("click", ".similar-song-artist", searchButtonClickHandler);
 
 // Show any persisted saved searches
 initializeSavedSearches();
