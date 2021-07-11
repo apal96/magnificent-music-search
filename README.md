@@ -14,7 +14,7 @@
 
 # General Info
 * This is a website that offers users information relating to a music artist they input in the search field
-* ![Image text](ADD IMAGE)
+* ![Snapshot of Live Website](./assets/img/MMSCapture.PNG)
 
 # Technologies
 * This website was created with HTML, Tachyons, and Javascript code on Microsoft Visual Studio Code.
