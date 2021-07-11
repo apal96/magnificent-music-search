@@ -7,15 +7,16 @@
 3. [Installation](#installation)
 4. [Usage](#usage)
 5. [Collaboration](#collaboration)
-6. [Github](#github)
-7. [eMail](#email)
-8. [FAQs](#faqs)
+6. [Deployed Site](#deployed-site)
+7. [Github](#github)
+8. [eMail](#email)
+9. [FAQs](#faqs)
 
-## General Info
+# General Info
 * This is a website that offers users information relating to a music artist they input in the search field
 * ![Image text](ADD IMAGE)
 
-## Technologies
+# Technologies
 * This website was created with HTML, Tachyons, and Javascript code on Microsoft Visual Studio Code.
 
 # Installation
@@ -29,6 +30,9 @@
 
 # Collaboration
 * The developers of this website is Troy Johnson, Sam Lingampalli, and Alisha Pal.
+
+# Deployed Site
+* The deployed site can be accessed in browser at https://apal96.github.io/magnificent-music-search/
 
 # Github
 * The Repository can be accessed on Github at https://github.com/apal96/magnificent-music-search
